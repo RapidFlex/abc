@@ -70,6 +70,12 @@ struct If_DsdObj_t_
     unsigned       fMark   :  1;   // user mark
     unsigned       Count   : 18;   // variable
     unsigned       nFans   :  5;   // fanin count
+    
+    unsigned nOccurNormal;  //added by cxf
+    unsigned nOccurCutset;
+    unsigned nOccurCutBest; //deleted for WORD alignment (64bit)
+    unsigned dummy;
+    
     unsigned       pFans[0];       // fanins
 };
 
@@ -1103,7 +1109,7 @@ void If_DsdManSave( If_DsdMan_t * p, char * pFileName )
         fwrite( p->pCellStr, sizeof(char)*Num, 1, pFile );
     fclose( pFile );
 }
-If_DsdMan_t * If_DsdManLoad( char * pFileName )
+If_DsdMan_t * If_DsdManLoad( char * pFileName )   //new load by cxf
 {
     If_DsdMan_t * p;
     If_DsdObj_t * pObj; 
